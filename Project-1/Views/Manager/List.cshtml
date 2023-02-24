@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Project_1.Models.ManagerDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach(var Manager in Model)
+{
+    <h2><a href="/Manager/Details/@Manager.ManagerID">@Manager.ManagerName </a></h2>
+    <div>Position Titile: @Manager.ManagerPosition</div>
+    <div>Branch location: @Manager.ManagerBranch</div>
+}
+

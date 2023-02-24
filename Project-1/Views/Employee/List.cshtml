@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Project_1.Models.EmployeeDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/Employee/New">New Employee</a>
+@foreach(var Employee in Model)
+{
+    <h2><a href="/Employee/Details/@Employee.EmployeeID">@Employee.EmployeeName</a></h2>
+    <div>Position: @Employee.EmployeePosition</div>
+    <div>Department: @Employee.DepartmentName</div>
+}
+

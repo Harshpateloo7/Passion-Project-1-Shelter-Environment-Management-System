@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Manager</h2>
+<form action="/Manager/Create" method="POST">
+    <div>
+        <label>Manager Name : </label><input type="text" name="ManagerName" />
+    </div>
+    <div>
+        <label>Manager Position:</label><input type="text" name="ManagerPosition" />
+    </div>
+    <div>
+        <label>Branch Location:</label><input type="text" name="ManagerBranch" />
+    </div>
+    <div>
+        <input type="submit" value="Add New Manager" />
+    </div>
+
+</form>
+
