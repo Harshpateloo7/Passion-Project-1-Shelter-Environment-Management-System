@@ -1,0 +1,20 @@
+﻿@model Project_1.Models.DepartmentsDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form action="/Department/Update/@Model.DepartmentID" method="POST">
+    <input type="hidden" name="DepartmentID" value="@Model.DepartmentID" />
+    <div>
+        <lable>Department Name: </lable><input type="text" name="DepartmentName" value="@Model.DepartmentName" />
+    </div>
+    <div>
+        <lable>Department Role: </lable><input type="text" name="DepartmentRole" value="@Model.DepartmentRole" />
+    </div>
+    <div>
+        <input type="submit" value="Edit Department" />
+    </div>
+
+</form>
+

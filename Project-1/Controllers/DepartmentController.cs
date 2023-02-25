@@ -107,44 +107,56 @@ namespace Project_1.Controllers
         // GET: Department/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "FindDepartments/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            DepartmentsDto selectedDepartment = response.Content.ReadAsAsync<DepartmentsDto>().Result;
+            return View(selectedDepartment);
         }
 
-        // POST: Department/Edit/5
+        // POST: Department/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Departments departments)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+            string url = "UpdateDepartments/" + id;
+            string jsonpayload = jss.Serialize(departments);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode) 
+            { 
+                return RedirectToAction("List"); 
             }
-            catch
-            {
-                return View();
+            else 
+            { 
+                return RedirectToAction("Error"); 
             }
         }
 
         // GET: Department/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "FindDepartments/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            DepartmentsDto selectedDepartment = response.Content.ReadAsAsync<DepartmentsDto>().Result;
+            return View(selectedDepartment);
         }
 
         // POST: Department/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Departments departments)
         {
-            try
+            string url = "DeleteDepartments/" + id;
+            string jsonplayload = jss.Serialize(departments);
+            HttpContent content = new StringContent(jsonplayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url,content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
-            {
-                return View();
+            else 
+            { 
+                return RedirectToAction("Error"); 
             }
         }
     }

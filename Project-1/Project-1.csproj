@@ -303,6 +303,7 @@
     <Content Include="Views\Manager\Edit.cshtml" />
     <Content Include="Views\Manager\DeleteConfirm.cshtml" />
     <Content Include="Views\Employee\DeleteConfirm.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
