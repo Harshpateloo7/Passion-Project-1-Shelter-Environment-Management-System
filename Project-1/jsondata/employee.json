@@ -1,7 +1,6 @@
 ﻿{
+  "DepartmentID": 3,
     "EmployeeID": 5,
     "EmployeeName": "Harsh",
-    "EmployeePosition": "Housing",
-    "DepartmentID": 3
-
+  "EmployeePosition": "Housing"
 }

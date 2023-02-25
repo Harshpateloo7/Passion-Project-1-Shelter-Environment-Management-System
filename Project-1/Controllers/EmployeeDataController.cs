@@ -31,9 +31,7 @@ namespace Project_1.Controllers
                 EmployeeID = e.EmployeeID,
                 EmployeeName = e.EmployeeName,
                 EmployeePosition = e.EmployeePosition,
-                DepartmentID= e.DepartmentID,
                 DepartmentName = e.Departments.DepartmentName
-
             }));
             return EmployeeDtos;
         }
@@ -49,10 +47,7 @@ namespace Project_1.Controllers
                 EmployeeID = Employee.EmployeeID,
                 EmployeeName = Employee.EmployeeName,
                 EmployeePosition = Employee.EmployeePosition,
-                DepartmentID = Employee.DepartmentID,
                 DepartmentName = Employee.Departments.DepartmentName
-                
-                
             };
             if (Employee == null)
             {
@@ -61,15 +56,6 @@ namespace Project_1.Controllers
 
             return Ok(EmployeeDto);
         }
-        /// <summary>
-        /// Gathers information about all Employee related to a particular Department
-        /// </summary>
-        /// <returns>
-        /// HEADER: 200 (OK)
-        /// CONTENT: all Employee in the database, including their associated species matched with a particular Department
-        /// </returns>
-        /// <param name="id">Department ID</param>
-        /// <example>
         /// GET: api/EmployeeData/ListEmployeesForDepartment/3
         /// </example>
         [HttpGet]
