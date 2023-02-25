@@ -4,8 +4,8 @@
 }
 
 <a href="/Manager/List">Go back to list</a>
-<h2>@Model.ManagerName</h2>
+<h2>Manager Name: @Model.ManagerName</h2>
 <div>Position Title : @Model.ManagerPosition</div>
 <div>Branch Location : @Model.ManagerBranch</div>
-
-
+<a href="/Manager/Edit/@Model.ManagerID">Edit</a>
+<a href="/Manager/DeleteConfirm/@Model.ManagerID">Delete</a>

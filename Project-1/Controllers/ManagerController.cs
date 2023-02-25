@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Web.UI.WebControls;
 
 namespace Project_1.Controllers
 {
@@ -103,44 +104,63 @@ namespace Project_1.Controllers
         // GET: Manager/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "FindManager/" +id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            ManagerDto selectedManager = response.Content.ReadAsAsync<ManagerDto>().Result;
+
+
+            return View(selectedManager);
         }
 
-        // POST: Manager/Edit/5
+        // POST: Manager/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Manager manager)
         {
-            try
-            {
-                // TODO: Add update logic here
+            string url = "UpdateManager/"+id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            string jsonplayload = jss.Serialize(manager);
+
+            HttpContent content = new StringContent(jsonplayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
 
         // GET: Manager/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "FindManager/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            ManagerDto selectedManager = response.Content.ReadAsAsync<ManagerDto>().Result;
+
+            return View(selectedManager);
         }
 
         // POST: Manager/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Manager manager)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "DeleteManager/" + id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            string jsonplayload = jss.Serialize(manager);
+
+            HttpContent content = new StringContent(jsonplayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

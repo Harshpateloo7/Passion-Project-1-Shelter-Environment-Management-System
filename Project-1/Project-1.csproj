@@ -236,7 +236,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <None Include="jsondata\employee.json" />
+    <Content Include="jsondata\employee.json" />
     <None Include="jsondata\manager.json" />
     <None Include="jsondata\department.json" />
     <Content Include="Scripts\bootstrap.js" />
@@ -300,6 +300,9 @@
     <Content Include="Views\Department\New.cshtml" />
     <Content Include="Views\Department\Error.cshtml" />
     <Content Include="Views\Department\DeleteConfirm.cshtml" />
+    <Content Include="Views\Manager\Edit.cshtml" />
+    <Content Include="Views\Manager\DeleteConfirm.cshtml" />
+    <Content Include="Views\Employee\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

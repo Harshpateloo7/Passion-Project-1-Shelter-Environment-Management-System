@@ -1,0 +1,18 @@
+﻿@model Project_1.Models.EmployeeDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+<a href="/Employee/List">Go back to list</a>
+<a href="/Employee/DeleteConfirm/@Model.EmployeeID">Delete</a>
+<h3> Are You sure want to delete Employee?</h3>
+<h2>@Model.EmployeeID@Model.EmployeeName</h2>
+<div>Position Titile: @Model.EmployeePosition</div>
+<div>Branch location: @Model.DepartmentName</div>
+
+
+<form action="/Employee/Delete/@Model.EmployeeID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

@@ -1,0 +1,23 @@
+﻿@model Project_1.Models.ManagerDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form action="/Manager/Update/@Model.ManagerID" method="POST">
+    <input type="hidden" name="ManagerID" value="@Model.ManagerID" />
+    <div>
+        <label>Manager Name : </label><input type="text" name="ManagerName" value="@Model.ManagerName" />
+    </div>
+    <div>
+        <label>Manager Position:</label><input type="text" name="ManagerPosition" value="@Model.ManagerPosition" />
+    </div>
+    <div>
+        <label>Branch Location:</label><input type="text" name="ManagerBranch" value="@Model.ManagerBranch" />
+    </div>
+    <div>
+        <input type="submit" value="Edit Manager" />
+    </div>
+
+</form>
+

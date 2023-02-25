@@ -47,7 +47,9 @@ namespace Project_1.Controllers
                 EmployeeID = Employee.EmployeeID,
                 EmployeeName = Employee.EmployeeName,
                 EmployeePosition = Employee.EmployeePosition,
-                DepartmentName = Employee.Departments.DepartmentName
+                DepartmentName = Employee.Departments.DepartmentName,
+                DepartmentID = Employee.Departments.DepartmentID
+
             };
             if (Employee == null)
             {

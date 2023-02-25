@@ -1,7 +1,23 @@
-﻿
+﻿@model Project_1.Models.EmployeeDto
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
+
+<form action="/Employee/Update/@Model.EmployeeID" method="POST">
+    <input type="hidden" name="EmployeeID" value="@Model.EmployeeID" />
+    <div>
+        <lable>Employee Name : </lable><input type="text" name="EmployeeName" value="@Model.EmployeeName" />
+    </div>
+    <div>
+        <label>Employee Position : </label><input type="text" name="EmployeePosition" value="@Model.EmployeePosition" />
+    </div>
+    <div>
+        <label>Employee Department : </label><input type="text" name="DepartmentID" value="@Model.DepartmentID" />
+    </div>
+    <div>
+        <input type="submit" value="Update" />
+    </div>
+</form>
 
