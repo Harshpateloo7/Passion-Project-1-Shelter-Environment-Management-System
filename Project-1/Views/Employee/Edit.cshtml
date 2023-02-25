@@ -1,20 +1,26 @@
-﻿@model Project_1.Models.EmployeeDto
+﻿@model Project_1.Models.ViewModels.UpdateEmployee
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 
-<form action="/Employee/Update/@Model.EmployeeID" method="POST">
-    <input type="hidden" name="EmployeeID" value="@Model.EmployeeID" />
+<form action="/Employee/Update/@Model.SelectedEmployee.EmployeeID" method="POST">
+    <input type="hidden" name="EmployeeID" value="@Model.SelectedEmployee.EmployeeID" />
     <div>
-        <lable>Employee Name : </lable><input type="text" name="EmployeeName" value="@Model.EmployeeName" />
+        <lable>Employee Name : </lable><input type="text" name="EmployeeName" value="@Model.SelectedEmployee.EmployeeName" />
     </div>
     <div>
-        <label>Employee Position : </label><input type="text" name="EmployeePosition" value="@Model.EmployeePosition" />
+        <label>Employee Position : </label><input type="text" name="EmployeePosition" value="@Model.SelectedEmployee.EmployeePosition" />
     </div>
     <div>
-        <label>Employee Department : </label><input type="text" name="DepartmentID" value="@Model.DepartmentID" />
+        <label>Department ID</label>
+        <select name="DepartmentID">
+            @foreach (var Department in Model.DepartmentsOptions)
+            {
+                <option value="@Department.DepartmentID">@Department.DepartmentName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Update" />

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Project_1.Models.DepartmentsDto>
 @{
     ViewBag.Title = "New";
 }
@@ -12,7 +12,13 @@
         <label>Position:</label><input type="text" name="EmployeePosition" />
     </div>
     <div>
-        <label>Department ID:</label><input type="number" name="DepartmentID" />
+        <label>Departments:</label>
+        <select name="DepartmentID">
+            @foreach (var Department in Model)
+            {
+                <option value="@Department.DepartmentID">@Department.DepartmentName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Employee"/>

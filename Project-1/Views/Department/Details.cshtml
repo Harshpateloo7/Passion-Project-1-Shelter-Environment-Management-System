@@ -1,13 +1,23 @@
-﻿@model Project_1.Models.DepartmentsDto
+﻿@model Project_1.Models.ViewModels.DetailsDepartments
 @{
     ViewBag.Title = "Details";
 }
 
-<a href="/Department/List">Go back to list</a>
-<h2>@Model.DepartmentName</h2>
-<div>Department Role: @Model.DepartmentRole</div>
-<a href="/Department/Edit/@Model.DepartmentID">Edit</a>
-<a href="/Department/DeleteConfirm/@Model.DepartmentID">Delete</a>
+<a href="/Department/List">Go back to list</a><br/>
+<a href="/Department/Edit/@Model.SelectedDepartments.DepartmentID">Edit</a><br/>
+<a href="/Department/DeleteConfirm/@Model.SelectedDepartments.DepartmentID">Delete</a>
+<h2>@Model.SelectedDepartments.DepartmentName</h2>
+<div>Department Role: @Model.SelectedDepartments.DepartmentRole</div>
+
+<div style="margin-top:100px;">
+    <h3>Employee related to this Department</h3>
+    @foreach(var Employee in Model.RelatedEmployees)
+    {
+        <a href="/Employee/Details/@Employee.EmployeeID">@Employee.EmployeeName</a>
+    }
+
+</div>
+
 
 
 

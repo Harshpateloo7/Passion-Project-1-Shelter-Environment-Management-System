@@ -1,4 +1,5 @@
 ﻿using Project_1.Models;
+using Project_1.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -69,7 +70,14 @@ namespace Project_1.Controllers
         // GET: Employee/New
         public ActionResult New()
         {
-            return View();
+            //information about all department in the system
+            //GET api/DepartmentData/ListDepartments
+            string url = "DepartmentData/ListDepartments";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            IEnumerable<DepartmentsDto> DepartmentsOptions = response.Content.ReadAsAsync<IEnumerable<DepartmentsDto>>().Result;
+
+            return View(DepartmentsOptions);
         }
 
         // POST: Employee/Create
@@ -106,13 +114,23 @@ namespace Project_1.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
+            UpdateEmployee ViewModel = new UpdateEmployee();
+            // the existing Employee information
             string url = "EmployeeData/FindEmployee/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             EmployeeDto selectedEmployee = response.Content.ReadAsAsync<EmployeeDto>().Result;
-            
+            ViewModel.SelectedEmployee = selectedEmployee;
+            //all Department to choose from when updating this Employee
+            // the existing Employee information
+            url = "DepartmentData/ListDepartments/";
+            response = client.GetAsync(url).Result;
 
-            return View(selectedEmployee);
+            IEnumerable<DepartmentsDto> DepartmentsOption = response.Content.ReadAsAsync<IEnumerable<DepartmentsDto>>().Result;
+
+            ViewModel.DepartmentsOptions= DepartmentsOption;
+
+            return View(ViewModel);
         }
 
         // POST: Employee/Update/5

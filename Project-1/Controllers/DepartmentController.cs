@@ -1,4 +1,5 @@
 ﻿using Project_1.Models;
+using Project_1.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ namespace Project_1.Controllers
         static DepartmentController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44379/api/DepartmentData/");
+            client.BaseAddress = new Uri("https://localhost:44379/api/");
 
         }
         // GET: Department/List
@@ -29,7 +30,7 @@ namespace Project_1.Controllers
 
         
 
-            string url = "ListDepartments";
+            string url = "DepartmentData/ListDepartments";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The respoanse code is : ");
@@ -48,9 +49,11 @@ namespace Project_1.Controllers
             //objective: communicate with our animal data api to retrive a one Department
             //curl https://localhost:44379/api/DepartmentData/FindDepartments/{id}
 
+            DetailsDepartments ViewModel = new DetailsDepartments();
+
          
 
-            string url = "FindDepartments/"+id;
+            string url = "DepartmentData/FindDepartments/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             Debug.WriteLine("The respoanse code is : ");
@@ -59,9 +62,17 @@ namespace Project_1.Controllers
             DepartmentsDto selectedDepartment = response.Content.ReadAsAsync<DepartmentsDto>().Result;
             Debug.WriteLine("Department received : ");
             Debug.WriteLine(selectedDepartment.DepartmentName);
-            
 
-            return View(selectedDepartment);
+            ViewModel.SelectedDepartments= selectedDepartment;
+            //Showcase information about Employee related to this Department
+            //Send a request to gather information about Employees related to a particular DepartmentID
+            url = "EmployeeData/ListEmployeesForDepartment/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<EmployeeDto> RelatedEmployees = response.Content.ReadAsAsync<IEnumerable<EmployeeDto>>().Result;
+            ViewModel.RelatedEmployees = RelatedEmployees;
+
+
+            return View(ViewModel);
         }
         public ActionResult Error()
         {
@@ -84,7 +95,7 @@ namespace Project_1.Controllers
 
             //objective: add a new Department into our system using API
             //curl -H "Content-Type:application/json" -d https://localhost:44379/api/DepartmentData/AddDepartments
-            string url = "AddDepartments";
+            string url = "DepartmentData/AddDepartments";
             
             string jsonpayload = jss.Serialize(departments);
 
@@ -107,7 +118,7 @@ namespace Project_1.Controllers
         // GET: Department/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "FindDepartments/" + id;
+            string url = "DepartmentData/FindDepartments/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             DepartmentsDto selectedDepartment = response.Content.ReadAsAsync<DepartmentsDto>().Result;
             return View(selectedDepartment);
@@ -117,7 +128,7 @@ namespace Project_1.Controllers
         [HttpPost]
         public ActionResult Update(int id, Departments departments)
         {
-            string url = "UpdateDepartments/" + id;
+            string url = "DepartmentData/UpdateDepartments/" + id;
             string jsonpayload = jss.Serialize(departments);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -135,7 +146,7 @@ namespace Project_1.Controllers
         // GET: Department/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "FindDepartments/" + id;
+            string url = "DepartmentData/FindDepartments/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             DepartmentsDto selectedDepartment = response.Content.ReadAsAsync<DepartmentsDto>().Result;
             return View(selectedDepartment);
@@ -145,7 +156,7 @@ namespace Project_1.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Departments departments)
         {
-            string url = "DeleteDepartments/" + id;
+            string url = "DepartmentData/DeleteDepartments/" + id;
             string jsonplayload = jss.Serialize(departments);
             HttpContent content = new StringContent(jsonplayload);
             content.Headers.ContentType.MediaType = "application/json";

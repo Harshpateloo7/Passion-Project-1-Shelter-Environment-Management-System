@@ -32,6 +32,7 @@ namespace Project_1.Controllers
 
             return DepartmentsDtos;
         }
+        //GET: api/
 
         // GET: api/DepartmentData/FindDepartments/5
         [ResponseType(typeof(Departments))]
