@@ -10,14 +10,14 @@ I have established a one-to-many relationship between employees and departments,
 # Here is a list of features included: 
 Here is a list of features included in
 
-Employee side:
+# Employee side:
 •	Admin can add employee.
 •	Admin can edit employee details.
 •	Admin can Update employee details.
 •	Admin can delete employee details.
 •	Admin can assign department to employee.
 
-Department side:
+# Department side:
 •	Admin can add new department. 
 •	Admin can edit department.
 •	Admin can update department details.
@@ -25,7 +25,7 @@ Department side:
 •	Admin can be able to see employee details. 
 •	Admin can see manager list for specific department.
 
-Manager Side:
+# Manager Side:
 •	Admin can add new manager.
 •	Admin can assign department.
 •	Admin can edit manager details.
