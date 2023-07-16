@@ -8,8 +8,6 @@ I have built a Shelter Environment Management System, which is a custom manageme
 I have established a one-to-many relationship between employees and departments, where each employee belongs to one department, but departments can have multiple employees. Additionally, I have implemented a many-to-many relationship between departments and managers. This means that departments can have multiple managers, and managers can work in multiple departments.
 
 # Here is a list of features included: 
-Here is a list of features included in
-
 # Employee side:
 •	Admin can add employee.
 •	Admin can edit employee details.
